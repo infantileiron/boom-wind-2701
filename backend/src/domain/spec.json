@@ -20,6 +20,16 @@
       "type": "text"
     },
     {
+      "key": "version",
+      "label": "补发版本号",
+      "example": 1,
+      "type": "integer",
+      "min": 1,
+      "max": 9999,
+      "required": false,
+      "help": "同一机位同一观测号补发时递增填写，缺省为 1，仅最高版本参与计算。"
+    },
+    {
       "key": "facing",
       "label": "麦头正面方位（°，北 0°）",
       "example": 285,
