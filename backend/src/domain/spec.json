@@ -1,0 +1,67 @@
+{
+  "organization": "蒲影纪录片外录组",
+  "tagline": "先复勘迎风机位，再锁定外景同期声安排",
+  "source": "NB12 风向仪读数与蒲影纪录片勘景机位单",
+  "record_name": "机位风向观测",
+  "algorithm": "单位向量圆均值、圆方差与迎风风速投影",
+  "formula": "按机位平均 cos(θ) 与 sin(θ)，atan2 给出圆均值，圆方差为 1−合向量长度 R。合向量近零时平均方向无定义。单次迎风分量为 max(0, 风速×cos(来风方向−机位正面))，迎风达线次数除以有效风观测次数。",
+  "decision_prompt": "哪个机位应换朝向，哪个机位应增加二轮风噪试录？",
+  "fields": [
+    {
+      "key": "position",
+      "label": "勘景机位",
+      "example": "芦沟侧位",
+      "type": "text"
+    },
+    {
+      "key": "reading",
+      "label": "观测号",
+      "example": "LG-14",
+      "type": "text"
+    },
+    {
+      "key": "facing",
+      "label": "麦头正面方位（°，北 0°）",
+      "example": 285,
+      "type": "number",
+      "min": 0,
+      "max": 359.999
+    },
+    {
+      "key": "wind_from",
+      "label": "来风方向（°，北 0°）",
+      "example": 300,
+      "type": "number",
+      "min": 0,
+      "max": 359.999
+    },
+    {
+      "key": "speed",
+      "label": "风速（m/s）",
+      "example": 7.3,
+      "type": "number",
+      "min": 0,
+      "max": 50
+    }
+  ],
+  "parameters": [
+    {
+      "key": "head_limit",
+      "label": "迎风分量判读线（m/s）",
+      "type": "number",
+      "min": 0.1,
+      "max": 25,
+      "default": 4,
+      "help": "达到分量判读线的单次观测计作一笔迎风暴露。"
+    },
+    {
+      "key": "review_pct",
+      "label": "需要复勘的迎风占比（%）",
+      "type": "number",
+      "min": 0.1,
+      "max": 100,
+      "default": 40,
+      "help": "占比达到此线的机位进入复勘清单。"
+    }
+  ]
+}
